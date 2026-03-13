@@ -1,18 +1,14 @@
-#include <unordered_set> // Yeh hasing ke liye use krunga for unsorted elements
-using namespace std;
-
 class Solution {
 public:
-    bool containsDuplicate(vector<int>& nums) {  //vector<int> yeh ek dynamic array & pass by reference
-        unordered_set<int> seen; // optimised way more than unordered map
+    bool containsDuplicate(vector<int>& nums) {
 
-        for(int num : nums){
-            if(seen.count(num)){ // If the element if found Mai return krdunga 
+        sort(nums.begin(), nums.end());
+
+        for(int i = 1; i < nums.size(); i++){
+            if(nums[i] == nums[i-1])
                 return true;
-            }
-            seen.insert(num); // seen i used to prevent duplicates 
         }
-        return false; // element nhi mila 
-        
+
+        return false;
     }
 };
